@@ -1,6 +1,6 @@
 input = """16100064-16192119,2117697596-2117933551,1-21,9999936269-10000072423,1770-2452,389429-427594,46633-66991,877764826-877930156,880869-991984,18943-26512,7216-9427,825-1162,581490-647864,2736-3909,39327886-39455605,430759-454012,1178-1741,219779-244138,77641-97923,1975994465-1976192503,3486612-3602532,277-378,418-690,74704280-74781349,3915-5717,665312-740273,69386294-69487574,2176846-2268755,26-45,372340114-372408052,7996502103-7996658803,7762107-7787125,48-64,4432420-4462711,130854-178173,87-115,244511-360206,69-86"""
 test = """11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"""
-
+# Get text input and transform each ID's divided by commas into a list
 def list(input):
     range = ""
     output = []
@@ -12,6 +12,7 @@ def list(input):
             range = ""
     output.append(range)
     return output
+# from a range get the first and last number
 def numbers(range):
     num1 = ""
     num2 = ""
@@ -27,10 +28,12 @@ def numbers(range):
     num1 = int(num1)
     num2 = int(num2)
     return num1,num2
+#check if is invalid for part 1
 def check_invalid_1(number):
     number = str(number)
     half = int(len(number)/2)
     return number[:half] == number[half:]
+#sum up every invalid for part 1
 def sum_invalid_1(input):
     num = list(input)
     sum = 0
@@ -40,6 +43,7 @@ def sum_invalid_1(input):
             if check_invalid_1(j):
                 sum += j
     return sum
+#split a given number in number's of length leng
 def split_in(input,leng):
     output = []
     n = ""
@@ -49,6 +53,7 @@ def split_in(input,leng):
             output.append(n)
             n = ""
     return output
+#check if is invalid for part 2
 def check_invalid_2(number):
     number = str(number)
     max_length = int(len(number) / 2)
@@ -68,7 +73,7 @@ def check_invalid_2(number):
                 flag = True
 
     return flag
-
+#sum up invalids for part2
 def sum_invalid_2(input):
     num = list(input)
     sum = 0
@@ -79,9 +84,9 @@ def sum_invalid_2(input):
                 sum += j
     return sum
 
-print("List : ",list(input))
-print("Part 1 Test : " , sum_invalid_1(test))
-print("Part 1      : " ,sum_invalid_1(input))
+print("List        : ",list(input))
+print("Part 1 Test : ",sum_invalid_1(test))
+print("Part 1      : ",sum_invalid_1(input))
 print("Part 2 Test : ",sum_invalid_2(test))
 print("Part 2      : ",sum_invalid_2(input))
 
