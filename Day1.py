@@ -1,18 +1,3 @@
-def lines(filename):
-    """Return list of lines from the file called filename"""
-    words = []
-    # open the dictionary file
-    with open(filename, encoding="utf-8") as f:
-        # assign the list of lines from f to words
-        for w in f:
-            # cut off line separator at end
-            words.append(w[0:len(w) - 1])
-    return words
-
-list_rotations = lines("Day1_text")
-list_rotations[-1]= "L15"
-start_point = 50
-
 def dial_unlock_1(instructions,start_point):
     times = 0
     for i in instructions:
@@ -30,8 +15,6 @@ def dial_unlock_1(instructions,start_point):
         if start_point == 0:
             times = times + 1
     return times
-print(dial_unlock_1(list_rotations,start_point))
-
 def dial_unlock_2(instructions,start):
     current = start
     times = 0
@@ -52,4 +35,9 @@ def dial_unlock_2(instructions,start):
                 times = times + 1
 
     return times
-print(dial_unlock_2(list_rotations,start_point))
+with open('Day1_text', 'r') as file:
+    content = file.read()
+    list_rotations = content.split()
+start_point = 50
+print("Part 1 : ",dial_unlock_1(list_rotations,start_point))
+print("Part 2 : ",dial_unlock_2(list_rotations,start_point))
