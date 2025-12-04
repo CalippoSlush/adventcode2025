@@ -6,6 +6,8 @@ with open('Day4_text', 'r') as file:
     input = content.replace("\n", "")
 test = list(test)
 input = list(input)
+xxx = test.copy()
+yyy = input.copy()
 def part1(test,size):
     check = 0
     for i in range(len(test)):
@@ -60,9 +62,15 @@ def part2(test,size):
         total+= len(can_rem)
         test = removed(test,can_rem)
     return total
+def recursive_part2(test,size):
+    can_rem = find_removes(test,size)
+    if len(can_rem)==0:
+        return 0
+    return len(can_rem)+recursive_part2(removed(test,can_rem),size)
 print("Part 1 Test : ",part1(test,10))
 print("Part 1      : ",part1(input,135))
 print("Part 2 Test : ",part2(test,10))
 print("Part 2      : ",part2(input,135))
-
+print("Recursive Part 2 Test : ",recursive_part2(xxx,10))
+print("Recursive Part 2      : ",recursive_part2(yyy,135))
 
